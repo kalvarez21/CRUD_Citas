@@ -101,22 +101,18 @@ void Borrar(int id) {
 
 
 */
-void buscar_PacCod(int cod) {
+Cita buscar_CitCod(int cod) {
 	FILE* archivo = fopen(nombre_archivo, "rb");
-	int pos = 0, indice = 0;
-	string date = "";
 	Estructura::Cita cita;
 	fread(&cita, sizeof(Estructura::Cita), 1, archivo);
 	do {
 		if (cita.CitCod == cod) {
-			cout << "CitCod: " << cita.CitCod << endl;
-			cout << "MedCod: " << cita.MedCod << endl;
-			cout << "HorCod: " << cita.HorCod << endl;
-			cout << "PacCod: " << cita.PacCod << endl;
+			break;
 		}
 		fread(&cita, sizeof(Estructura::Cita), 1, archivo);
 	} while (feof(archivo) == 0);
 	fclose(archivo);
+	return cita;
 }
 /*
 void buscar_indice() {
